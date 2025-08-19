@@ -39,6 +39,7 @@ def main():
                 if data[i] == 0x55 and data[i+1]==0x07 and data[i+int(data[i+2])]==0x55 and data[i+int(data[i+2])+1]==0x07:
                     dist_raw = c_int32((65536*data[i+25] + 256*data[i+24] + data[i+23])<<8).value/256/1000
                     angle_raw = c_int32((256*data[i+27] + data[i+26])<<16).value/256/256/100
+                    break
         # print("\r", dist_raw/1000, angle_raw/100, end="")
         if(abs(angle_raw)>7.5):
             Va = kpa*(angle_raw/180*math.pi-0)+kda*(last_angle_raw-angle_raw)/180*math.pi
